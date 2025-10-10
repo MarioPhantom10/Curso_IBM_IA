@@ -143,11 +143,13 @@ Las mejoras aplicadas optimizan la **estructura, claridad y calidad del código*
 --- Ventas del 15-05-2024 al 15-06-2024 ---
 
 ============================================================
+
 💰 Total ventas: $684,547.00
 🧾 Ventas registradas: 45
 📦 Productos vendidos: 138
 
 --- 🏆 Top 3 productos más vendidos ---
+
 1 Shampoo xxx               52 unidades
 2 Crema xxx                    38 unidades
 3 Perfume xxx                  28 unidades
@@ -157,5 +159,6 @@ Las mejoras aplicadas optimizan la **estructura, claridad y calidad del código*
 1. Efectivo             $300,000.00
 2. Tarjeta Débito       $220,547.00
 3. Transferencia        $164,000.00
+
 ============================================================
 ✅ Consulta completada con éxito.
