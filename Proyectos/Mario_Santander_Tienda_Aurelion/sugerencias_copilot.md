@@ -148,9 +148,9 @@ Las mejoras aplicadas optimizan la **estructura, claridad y calidad del código*
 📦 Productos vendidos: 138
 
 --- 🏆 Top 3 productos más vendidos ---
-1.Shampoo Aurelion Herbal               52 unidades
-2.Crema Facial Ultra                    38 unidades
-3.Perfume Essence Gold                  28 unidades
+1 Shampoo xxx               52 unidades
+2 Crema xxx                    38 unidades
+3 Perfume xxx                  28 unidades
 
 --- 💳 Ventas por medio de pago ---
 
@@ -159,5 +159,3 @@ Las mejoras aplicadas optimizan la **estructura, claridad y calidad del código*
 3. Transferencia        $164,000.00
 ============================================================
 ✅ Consulta completada con éxito.
-
----
