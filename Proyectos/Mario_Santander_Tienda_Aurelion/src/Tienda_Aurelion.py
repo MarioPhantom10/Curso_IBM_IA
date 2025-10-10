@@ -2,18 +2,6 @@ import pandas as pd
 import os
 import sys
 
-# Verificar si openpyxl está instalado
-try:
-    import openpyxl
-except ImportError:
-    print("Error: falta la librería 'openpyxl'.")
-    print("Instálala con: pip install openpyxl")
-    sys.exit(1)
-
-# Carpeta base relativa al archivo actual
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_DIR = os.path.join(BASE_DIR, '..', 'database')
-
 # ===================== Funciones de carga =====================
 def cargar_clientes():
     df = pd.read_excel(os.path.join(DB_DIR, 'clientes.xlsx'))
@@ -38,10 +26,7 @@ def cargar_detalle_ventas():
 
 # ===================== Función para imprimir top 3 con colores =====================
 def imprimir_top(df, columnas, titulo):
-    """
-    Muestra un DataFrame con ranking, alineado y con top 3 resaltado.
-    """
-    print(f"\n--- {titulo} ---")
+    print(f"\n\033[1;36m--- {titulo} ---\033[0m")
     for i, row in df.iterrows():
         idx = i + 1
         color = ''
@@ -55,25 +40,25 @@ def imprimir_top(df, columnas, titulo):
 
         line = f"{idx:<3}"  # ranking
         for col in columnas:
-            line += f"{str(row[col]):<30}"  # ancho columna
+            line += f"{str(row[col]):<30}"
         print(f"{color}{line}{reset}")
 
 # ===================== Funciones de visualización =====================
 def mostrar_bienvenida():
-    print("="*60)
-    print(" Bienvenido al programa de gestión de datos")
-    print("           Tienda Aurelion")
-    print("="*60)
-    print("Este programa le permitirá consultar y analizar")
-    print("los datos de clientes, productos y ventas de la tienda.\n")
+    print("\033[1;36m" + "="*60 + "\033[0m")
+    print("\033[1;37m Bienvenido al programa de gestión de datos\033[0m")
+    print("\033[1;35m           Tienda Aurelion\033[0m")
+    print("\033[1;36m" + "="*60 + "\033[0m")
+    print("\033[1;33mEste programa le permitirá consultar y analizar")
+    print("los datos de clientes, productos y ventas de la tienda.\033[0m\n")
 
 def mostrar_menu():
-    print("\nSeleccione una opción:")
-    print("1. Consultar clientes con más compras")
-    print("2. Consultar productos más vendidos")
-    print("3. Consultar ventas por medio de pago")
-    print("4. Consultar ventas en un periodo")
-    print("5. Salir")
+    print("\n\033[1;32mSeleccione una opción:\033[0m")
+    print("\033[1;36m1. Consultar clientes con más compras\033[0m")
+    print("\033[1;36m2. Consultar productos más vendidos\033[0m")
+    print("\033[1;36m3. Consultar ventas por medio de pago\033[0m")
+    print("\033[1;36m4. Consultar ventas en un periodo\033[0m")
+    print("\033[1;36m5. Salir\033[0m")
 
 # ===================== Consultas =====================
 def clientes_con_mas_compras(ventas, clientes):
@@ -98,11 +83,6 @@ def ventas_por_medio_pago(ventas):
     imprimir_top(medios, ['medio_pago','total_ventas'], "Ventas por medio de pago")
 
 def ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin):
-    """
-    Muestra el total de ventas, top 3 de productos y resumen por medio de pago dentro de un rango de fechas.
-    Incluye formato con colores ANSI (sin usar colorama).
-    """
-    # Convertir fechas a formato datetime
     try:
         fecha_inicio_dt = pd.to_datetime(fecha_inicio, dayfirst=True)
         fecha_fin_dt = pd.to_datetime(fecha_fin, dayfirst=True)
@@ -110,15 +90,13 @@ def ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin
         print("\033[1;33m⚠️ Formato de fecha inválido. Debe ser DD-MM-YYYY.\033[0m")
         return
 
-    # Validar rango
     fecha_min = ventas['fecha'].min()
     fecha_max = ventas['fecha'].max()
     if fecha_inicio_dt < fecha_min or fecha_fin_dt > fecha_max:
         print(f"\033[1;33m⚠️ Fechas fuera de rango.\033[0m")
-        print(f"Periodo válido: \033[1;36m{fecha_min.strftime('%d-%m-%Y')}\033[0m a \033[1;36m{fecha_max.strftime('%d-%m-%Y')}\033[0m")
+        print(f"Periodo válido: \033[1;36m{fecha_min.strftime('%d-%m-%Y')} a {fecha_max.strftime('%d-%m-%Y')}\033[0m")
         return
 
-    # Filtrar ventas por rango de fecha
     filtro = (ventas['fecha'] >= fecha_inicio_dt) & (ventas['fecha'] <= fecha_fin_dt)
     ventas_filtradas = ventas[filtro]
 
@@ -126,30 +104,25 @@ def ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin
         print("\033[1;33m⚠️ No se encontraron ventas en el rango indicado.\033[0m")
         return
 
-    # Filtrar detalle_ventas correspondientes
     detalle_filtrado = detalle_ventas[detalle_ventas['id_venta'].isin(ventas_filtradas['id_venta'])]
-
-    # Unir con productos para obtener nombres y precios
     detalle_con_precio = detalle_filtrado.merge(
         productos[['id_producto', 'nombre_producto', 'precio_unitario']],
         on='id_producto',
         how='left'
     )
-
-    # Calcular importe total
     detalle_con_precio['importe'] = detalle_con_precio['cantidad'] * detalle_con_precio['precio_unitario']
 
-    # ================== ENCABEZADO ==================
-    print("\033[1;36m\n============================================================\033[0m")
+    # ==== ENCABEZADO ====
+    print("\033[1;36m" + "="*60 + "\033[0m")
     print(f"\033[1;37m--- Ventas del \033[1;36m{fecha_inicio_dt.strftime('%d-%m-%Y')}\033[1;37m al \033[1;36m{fecha_fin_dt.strftime('%d-%m-%Y')}\033[0m ---")
-    print("\033[1;36m============================================================\033[0m")
+    print("\033[1;36m" + "="*60 + "\033[0m")
 
     total = detalle_con_precio['importe'].sum()
     print(f"\033[1;32m💰 Total ventas: ${total:,.2f}\033[0m")
     print(f"\033[1;34m🧾 Ventas registradas: {len(ventas_filtradas)}\033[0m")
     print(f"\033[1;33m📦 Productos vendidos: {detalle_con_precio['cantidad'].sum()}\033[0m\n")
 
-    # ================== TOP 3 PRODUCTOS ==================
+    # ==== TOP 3 PRODUCTOS ====
     top_productos = (
         detalle_con_precio.groupby('nombre_producto')['cantidad']
         .sum()
@@ -165,7 +138,7 @@ def ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin
             print(f"{color}{i}. {row.nombre_producto:<40} {int(row.cantidad)} unidades\033[0m")
         print()
 
-    # ================== MEDIOS DE PAGO ==================
+    # ==== MEDIOS DE PAGO ====
     resumen_medios = (
         ventas_filtradas
         .merge(detalle_con_precio[['id_venta', 'importe']], on='id_venta', how='left')
@@ -181,38 +154,51 @@ def ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin
             medio = row['medio_pago']
             importe = row['importe']
             if "Tarjeta" in medio:
-                color = "\033[1;36m"   # cian brillante
+                color = "\033[1;36m"
             elif "Transferencia" in medio:
-                color = "\033[1;35m"   # magenta brillante
+                color = "\033[1;35m"
             elif "Efectivo" in medio:
-                color = "\033[1;32m"   # verde brillante
+                color = "\033[1;32m"
             else:
-                color = "\033[1;37m"   # blanco por defecto
+                color = "\033[1;37m"
             print(f"{color}{medio:<20} ${importe:,.2f}\033[0m")
 
-    print("\033[1;36m============================================================\033[0m")
+    print("\033[1;36m" + "="*60 + "\033[0m")
     print("\033[1;32m✅ Consulta completada con éxito.\033[0m\n")
 
 # ===================== Programa principal =====================
 if __name__ == "__main__":
+    # Verificar si openpyxl está instalado
+    try:
+        import openpyxl
+    except ImportError:
+        print("Error: falta la librería 'openpyxl'.")
+        print("Instálala con: pip install openpyxl")
+        sys.exit(1)
+
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    DB_DIR = os.path.join(BASE_DIR, '..', 'database')
+
     try:
         clientes = cargar_clientes()
         productos = cargar_productos()
         ventas = cargar_ventas()
         detalle_ventas = cargar_detalle_ventas()
-        print("Datos cargados correctamente.\n")
+        print("\033[1;32mDatos cargados correctamente.\033[0m\n")
     except Exception as e:
         print(f"Error al cargar los datos: {e}")
         sys.exit(1)
 
     mostrar_bienvenida()
-    
+
     while True:
         mostrar_menu()
-        opcion = input("Ingrese el número de la opción deseada: ").strip()
-        
+        opcion = input("\033[1;33mIngrese el número de la opción deseada: \033[0m").strip()
+
         if opcion == "5":
-            print("Fin del programa. ¡Hasta luego!")
+            print("\033[1;36m" + "="*60 + "\033[0m")
+            print("\033[1;32mFin del programa. ¡Hasta luego!\033[0m")
+            print("\033[1;36m" + "="*60 + "\033[0m")
             break
         elif opcion == "1":
             clientes_con_mas_compras(ventas, clientes)
@@ -221,15 +207,12 @@ if __name__ == "__main__":
         elif opcion == "3":
             ventas_por_medio_pago(ventas)
         elif opcion == "4":
-            # Mostrar rango de fechas disponible
             fecha_min = ventas['fecha'].min().strftime('%d-%m-%Y')
             fecha_max = ventas['fecha'].max().strftime('%d-%m-%Y')
-
             print(f"Ingrese las fechas en formato DD-MM-YYYY")
             print(f"Periodo válido de datos: {fecha_min} a {fecha_max}")
-
-            fecha_inicio = input("Fecha de inicio: ").strip()
-            fecha_fin = input("Fecha de fin: ").strip()
+            fecha_inicio = input("\033[1;33mFecha de inicio: \033[0m").strip()
+            fecha_fin = input("\033[1;33mFecha de fin: \033[0m").strip()
             ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin)
         else:
-            print("Opción no válida. Intente de nuevo.")
+            print("\033[1;31mOpción no válida. Intente de nuevo.\033[0m")
