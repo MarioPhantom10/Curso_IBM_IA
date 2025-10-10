@@ -134,17 +134,30 @@ Mostrar fechas en formato **DD-MM-YYYY** y validar que estén dentro del rango d
 
 **Ejemplo:**
 
-Ingrese las fechas en formato DD-MM-YYYY
-Periodo válido de datos: 02-01-2024 a 28-06-2024
-Fecha de inicio: 15-04-2024
-Fecha de fin: 20-05-2024
-Total ventas: $12,345.00
-
-> ⚠️ **Nota:** El formato de fecha debe ser exacto (DD-MM-YYYY).
----
-
-### Se utilizo chatgpt para mejorar visualmente este archivo .md
-
-### 📘 Conclusión
-
 Las mejoras aplicadas optimizan la **estructura, claridad y calidad del código**, facilitan la lectura de resultados, aseguran consistencia de datos y mejoran la experiencia del usuario.
+
+### además del total y el top 3 de productos, también muestra un resumen de ventas por medio de pago dentro del periodo de tiempo seleccionado, todo esto con colores y formato limpio
+
+============================================================
+
+--- Ventas del 15-05-2024 al 15-06-2024 ---
+
+============================================================
+💰 Total ventas: $684,547.00
+🧾 Ventas registradas: 45
+📦 Productos vendidos: 138
+
+--- 🏆 Top 3 productos más vendidos ---
+1.Shampoo Aurelion Herbal               52 unidades
+2.Crema Facial Ultra                    38 unidades
+3.Perfume Essence Gold                  28 unidades
+
+--- 💳 Ventas por medio de pago ---
+
+1. Efectivo             $300,000.00
+2. Tarjeta Débito       $220,547.00
+3. Transferencia        $164,000.00
+============================================================
+✅ Consulta completada con éxito.
+
+---

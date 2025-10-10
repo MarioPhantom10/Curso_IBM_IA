@@ -98,39 +98,100 @@ def ventas_por_medio_pago(ventas):
     imprimir_top(medios, ['medio_pago','total_ventas'], "Ventas por medio de pago")
 
 def ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin):
-    # Convertir fechas ingresadas a datetime DD-MM-YYYY
+    """
+    Muestra el total de ventas, top 3 de productos y resumen por medio de pago dentro de un rango de fechas.
+    Incluye formato con colores ANSI (sin usar colorama).
+    """
+    # Convertir fechas a formato datetime
     try:
         fecha_inicio_dt = pd.to_datetime(fecha_inicio, dayfirst=True)
         fecha_fin_dt = pd.to_datetime(fecha_fin, dayfirst=True)
     except Exception:
-        print("Formato de fecha inválido. Debe ser DD-MM-YYYY.")
+        print("\033[1;33m⚠️ Formato de fecha inválido. Debe ser DD-MM-YYYY.\033[0m")
         return
 
-    # Verificar periodo válido
+    # Validar rango
     fecha_min = ventas['fecha'].min()
     fecha_max = ventas['fecha'].max()
     if fecha_inicio_dt < fecha_min or fecha_fin_dt > fecha_max:
-        print(f"Fechas fuera de rango. El periodo válido es de {fecha_min.strftime('%d-%m-%Y')} a {fecha_max.strftime('%d-%m-%Y')}")
+        print(f"\033[1;33m⚠️ Fechas fuera de rango.\033[0m")
+        print(f"Periodo válido: \033[1;36m{fecha_min.strftime('%d-%m-%Y')}\033[0m a \033[1;36m{fecha_max.strftime('%d-%m-%Y')}\033[0m")
         return
 
-    # Filtrar ventas por fecha
+    # Filtrar ventas por rango de fecha
     filtro = (ventas['fecha'] >= fecha_inicio_dt) & (ventas['fecha'] <= fecha_fin_dt)
     ventas_filtradas = ventas[filtro]
 
-    # Filtrar detalle_ventas para esas ventas
+    if ventas_filtradas.empty:
+        print("\033[1;33m⚠️ No se encontraron ventas en el rango indicado.\033[0m")
+        return
+
+    # Filtrar detalle_ventas correspondientes
     detalle_filtrado = detalle_ventas[detalle_ventas['id_venta'].isin(ventas_filtradas['id_venta'])]
 
-    # Merge con productos para obtener precio_unitario
-    detalle_con_precio = detalle_filtrado.merge(productos[['id_producto','precio_unitario']], on='id_producto', how='left')
+    # Unir con productos para obtener nombres y precios
+    detalle_con_precio = detalle_filtrado.merge(
+        productos[['id_producto', 'nombre_producto', 'precio_unitario']],
+        on='id_producto',
+        how='left'
+    )
 
-    # Calcular importe
+    # Calcular importe total
     detalle_con_precio['importe'] = detalle_con_precio['cantidad'] * detalle_con_precio['precio_unitario']
 
-    # Total ventas
-    total = detalle_con_precio['importe'].sum()
+    # ================== ENCABEZADO ==================
+    print("\033[1;36m\n============================================================\033[0m")
+    print(f"\033[1;37m--- Ventas del \033[1;36m{fecha_inicio_dt.strftime('%d-%m-%Y')}\033[1;37m al \033[1;36m{fecha_fin_dt.strftime('%d-%m-%Y')}\033[0m ---")
+    print("\033[1;36m============================================================\033[0m")
 
-    print(f"\n--- Ventas del {fecha_inicio_dt.strftime('%d-%m-%Y')} al {fecha_fin_dt.strftime('%d-%m-%Y')} ---")
-    print(f"Total ventas: ${total:,.2f}")
+    total = detalle_con_precio['importe'].sum()
+    print(f"\033[1;32m💰 Total ventas: ${total:,.2f}\033[0m")
+    print(f"\033[1;34m🧾 Ventas registradas: {len(ventas_filtradas)}\033[0m")
+    print(f"\033[1;33m📦 Productos vendidos: {detalle_con_precio['cantidad'].sum()}\033[0m\n")
+
+    # ================== TOP 3 PRODUCTOS ==================
+    top_productos = (
+        detalle_con_precio.groupby('nombre_producto')['cantidad']
+        .sum()
+        .reset_index()
+        .sort_values('cantidad', ascending=False)
+        .head(3)
+    )
+
+    if not top_productos.empty:
+        print("\033[1;37m--- 🏆 Top 3 productos más vendidos ---\033[0m")
+        for i, row in enumerate(top_productos.itertuples(), 1):
+            color = '\033[1;32m' if i == 1 else '\033[1;34m' if i == 2 else '\033[1;33m'
+            print(f"{color}{i}. {row.nombre_producto:<40} {int(row.cantidad)} unidades\033[0m")
+        print()
+
+    # ================== MEDIOS DE PAGO ==================
+    resumen_medios = (
+        ventas_filtradas
+        .merge(detalle_con_precio[['id_venta', 'importe']], on='id_venta', how='left')
+        .groupby('medio_pago')['importe']
+        .sum()
+        .reset_index()
+        .sort_values('importe', ascending=False)
+    )
+
+    if not resumen_medios.empty:
+        print("\033[1;37m--- 💳 Ventas por medio de pago ---\033[0m")
+        for _, row in resumen_medios.iterrows():
+            medio = row['medio_pago']
+            importe = row['importe']
+            if "Tarjeta" in medio:
+                color = "\033[1;36m"   # cian brillante
+            elif "Transferencia" in medio:
+                color = "\033[1;35m"   # magenta brillante
+            elif "Efectivo" in medio:
+                color = "\033[1;32m"   # verde brillante
+            else:
+                color = "\033[1;37m"   # blanco por defecto
+            print(f"{color}{medio:<20} ${importe:,.2f}\033[0m")
+
+    print("\033[1;36m============================================================\033[0m")
+    print("\033[1;32m✅ Consulta completada con éxito.\033[0m\n")
 
 # ===================== Programa principal =====================
 if __name__ == "__main__":
