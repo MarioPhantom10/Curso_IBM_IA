@@ -132,33 +132,8 @@ Mostrar fechas en formato **DD-MM-YYYY** y validar que estén dentro del rango d
 * Periodo válido mostrado al usuario antes de ingresar fechas.
 * Validación de que las fechas ingresadas no excedan el rango disponible.
 
-**Ejemplo:**
+### además del total y el top 3 de productos, también muestra un resumen de ventas por medio de pago dentro del periodo de tiempo seleccionado, todo esto con colores y formato limpio.
 
-Las mejoras aplicadas optimizan la **estructura, claridad y calidad del código**, facilitan la lectura de resultados, aseguran consistencia de datos y mejoran la experiencia del usuario.
+---
 
-### además del total y el top 3 de productos, también muestra un resumen de ventas por medio de pago dentro del periodo de tiempo seleccionado, todo esto con colores y formato limpio
-
-============================================================
-
---- Ventas del 15-05-2024 al 15-06-2024 ---
-
-============================================================
-
-💰 Total ventas: $684,547.00
-🧾 Ventas registradas: 45
-📦 Productos vendidos: 138
-
---- 🏆 Top 3 productos más vendidos ---
-
-1 Shampoo xxx               52 unidades
-2 Crema xxx                    38 unidades
-3 Perfume xxx                  28 unidades
-
---- 💳 Ventas por medio de pago ---
-
-1. Efectivo             $300,000.00
-2. Tarjeta Débito       $220,547.00
-3. Transferencia        $164,000.00
-
-============================================================
-✅ Consulta completada con éxito.
+Todas estas mejoras aplicadas optimizan la **estructura, claridad y calidad del código**, facilitan la lectura de resultados, aseguran consistencia de datos y mejoran la experiencia del usuario.
