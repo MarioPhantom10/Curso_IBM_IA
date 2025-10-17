@@ -24,41 +24,32 @@ def cargar_detalle_ventas():
     df.columns = df.columns.str.strip()
     return df
 
-# ===================== Función para imprimir top 3 con colores =====================
+# ===================== Función para imprimir top 3 =====================
 def imprimir_top(df, columnas, titulo):
-    print(f"\n\033[1;36m--- {titulo} ---\033[0m")
+    print(f"\n--- {titulo} ---")
     for i, row in df.iterrows():
         idx = i + 1
-        color = ''
-        reset = '\033[0m'
-        if idx == 1:
-            color = '\033[1;32m'  # Verde brillante
-        elif idx == 2:
-            color = '\033[1;34m'  # Azul brillante
-        elif idx == 3:
-            color = '\033[1;33m'  # Amarillo brillante
-
         line = f"{idx:<3}"  # ranking
         for col in columnas:
             line += f"{str(row[col]):<30}"
-        print(f"{color}{line}{reset}")
+        print(line)
 
 # ===================== Funciones de visualización =====================
 def mostrar_bienvenida():
-    print("\033[1;36m" + "="*60 + "\033[0m")
-    print("\033[1;37m Bienvenido al programa de gestión de datos\033[0m")
-    print("\033[1;35m           Tienda Aurelion\033[0m")
-    print("\033[1;36m" + "="*60 + "\033[0m")
-    print("\033[1;33mEste programa le permitirá consultar y analizar")
-    print("los datos de clientes, productos y ventas de la tienda.\033[0m\n")
+    print("="*60)
+    print(" Bienvenido al programa de gestión de datos")
+    print("           Tienda Aurelion")
+    print("="*60)
+    print("Este programa le permitirá consultar y analizar")
+    print("los datos de clientes, productos y ventas de la tienda.\n")
 
 def mostrar_menu():
-    print("\n\033[1;32mSeleccione una opción:\033[0m")
-    print("\033[1;36m1. Consultar clientes con más compras\033[0m")
-    print("\033[1;36m2. Consultar productos más vendidos\033[0m")
-    print("\033[1;36m3. Consultar ventas por medio de pago\033[0m")
-    print("\033[1;36m4. Consultar ventas en un periodo\033[0m")
-    print("\033[1;36m5. Salir\033[0m")
+    print("\nSeleccione una opción:")
+    print("1. Consultar clientes con más compras")
+    print("2. Consultar productos más vendidos")
+    print("3. Consultar ventas por medio de pago")
+    print("4. Consultar ventas en un periodo")
+    print("5. Salir")
 
 # ===================== Consultas =====================
 def clientes_con_mas_compras(ventas, clientes):
@@ -87,21 +78,21 @@ def ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin
         fecha_inicio_dt = pd.to_datetime(fecha_inicio, dayfirst=True)
         fecha_fin_dt = pd.to_datetime(fecha_fin, dayfirst=True)
     except Exception:
-        print("\033[1;33m⚠️ Formato de fecha inválido. Debe ser DD-MM-YYYY.\033[0m")
+        print("⚠️ Formato de fecha inválido. Debe ser DD-MM-YYYY.")
         return
 
     fecha_min = ventas['fecha'].min()
     fecha_max = ventas['fecha'].max()
     if fecha_inicio_dt < fecha_min or fecha_fin_dt > fecha_max:
-        print(f"\033[1;33m⚠️ Fechas fuera de rango.\033[0m")
-        print(f"Periodo válido: \033[1;36m{fecha_min.strftime('%d-%m-%Y')} a {fecha_max.strftime('%d-%m-%Y')}\033[0m")
+        print("⚠️ Fechas fuera de rango.")
+        print(f"Periodo válido: {fecha_min.strftime('%d-%m-%Y')} a {fecha_max.strftime('%d-%m-%Y')}")
         return
 
     filtro = (ventas['fecha'] >= fecha_inicio_dt) & (ventas['fecha'] <= fecha_fin_dt)
     ventas_filtradas = ventas[filtro]
 
     if ventas_filtradas.empty:
-        print("\033[1;33m⚠️ No se encontraron ventas en el rango indicado.\033[0m")
+        print("⚠️ No se encontraron ventas en el rango indicado.")
         return
 
     detalle_filtrado = detalle_ventas[detalle_ventas['id_venta'].isin(ventas_filtradas['id_venta'])]
@@ -112,15 +103,14 @@ def ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin
     )
     detalle_con_precio['importe'] = detalle_con_precio['cantidad'] * detalle_con_precio['precio_unitario']
 
-    # ==== ENCABEZADO ====
-    print("\033[1;36m" + "="*60 + "\033[0m")
-    print(f"\033[1;37m--- Ventas del \033[1;36m{fecha_inicio_dt.strftime('%d-%m-%Y')}\033[1;37m al \033[1;36m{fecha_fin_dt.strftime('%d-%m-%Y')}\033[0m ---")
-    print("\033[1;36m" + "="*60 + "\033[0m")
+    print("="*60)
+    print(f"--- Ventas del {fecha_inicio_dt.strftime('%d-%m-%Y')} al {fecha_fin_dt.strftime('%d-%m-%Y')} ---")
+    print("="*60)
 
     total = detalle_con_precio['importe'].sum()
-    print(f"\033[1;32m💰 Total ventas: ${total:,.2f}\033[0m")
-    print(f"\033[1;34m🧾 Ventas registradas: {len(ventas_filtradas)}\033[0m")
-    print(f"\033[1;33m📦 Productos vendidos: {detalle_con_precio['cantidad'].sum()}\033[0m\n")
+    print(f"Total ventas: ${total:,.2f}")
+    print(f"Ventas registradas: {len(ventas_filtradas)}")
+    print(f"Productos vendidos: {detalle_con_precio['cantidad'].sum()}\n")
 
     # ==== TOP 3 PRODUCTOS ====
     top_productos = (
@@ -132,10 +122,9 @@ def ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin
     )
 
     if not top_productos.empty:
-        print("\033[1;37m--- 🏆 Top 3 productos más vendidos ---\033[0m")
+        print("--- Top 3 productos más vendidos ---")
         for i, row in enumerate(top_productos.itertuples(), 1):
-            color = '\033[1;32m' if i == 1 else '\033[1;34m' if i == 2 else '\033[1;33m'
-            print(f"{color}{i}. {row.nombre_producto:<40} {int(row.cantidad)} unidades\033[0m")
+            print(f"{i}. {row.nombre_producto:<40} {int(row.cantidad)} unidades")
         print()
 
     # ==== MEDIOS DE PAGO ====
@@ -149,22 +138,12 @@ def ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin
     )
 
     if not resumen_medios.empty:
-        print("\033[1;37m--- 💳 Ventas por medio de pago ---\033[0m")
+        print("--- Ventas por medio de pago ---")
         for _, row in resumen_medios.iterrows():
-            medio = row['medio_pago']
-            importe = row['importe']
-            if "Tarjeta" in medio:
-                color = "\033[1;36m"
-            elif "Transferencia" in medio:
-                color = "\033[1;35m"
-            elif "Efectivo" in medio:
-                color = "\033[1;32m"
-            else:
-                color = "\033[1;37m"
-            print(f"{color}{medio:<20} ${importe:,.2f}\033[0m")
+            print(f"{row['medio_pago']:<20} ${row['importe']:,.2f}")
 
-    print("\033[1;36m" + "="*60 + "\033[0m")
-    print("\033[1;32m✅ Consulta completada con éxito.\033[0m\n")
+    print("="*60)
+    print("Consulta completada con éxito.\n")
 
 # ===================== Programa principal =====================
 if __name__ == "__main__":
@@ -184,7 +163,7 @@ if __name__ == "__main__":
         productos = cargar_productos()
         ventas = cargar_ventas()
         detalle_ventas = cargar_detalle_ventas()
-        print("\033[1;32mDatos cargados correctamente.\033[0m\n")
+        print("Datos cargados correctamente.\n")
     except Exception as e:
         print(f"Error al cargar los datos: {e}")
         sys.exit(1)
@@ -193,12 +172,12 @@ if __name__ == "__main__":
 
     while True:
         mostrar_menu()
-        opcion = input("\033[1;33mIngrese el número de la opción deseada: \033[0m").strip()
+        opcion = input("Ingrese el número de la opción deseada: ").strip()
 
         if opcion == "5":
-            print("\033[1;36m" + "="*60 + "\033[0m")
-            print("\033[1;32mFin del programa. ¡Hasta luego!\033[0m")
-            print("\033[1;36m" + "="*60 + "\033[0m")
+            print("="*60)
+            print("Fin del programa. ¡Hasta luego!")
+            print("="*60)
             break
         elif opcion == "1":
             clientes_con_mas_compras(ventas, clientes)
@@ -211,8 +190,8 @@ if __name__ == "__main__":
             fecha_max = ventas['fecha'].max().strftime('%d-%m-%Y')
             print(f"Ingrese las fechas en formato DD-MM-YYYY")
             print(f"Periodo válido de datos: {fecha_min} a {fecha_max}")
-            fecha_inicio = input("\033[1;33mFecha de inicio: \033[0m").strip()
-            fecha_fin = input("\033[1;33mFecha de fin: \033[0m").strip()
+            fecha_inicio = input("Fecha de inicio: ").strip()
+            fecha_fin = input("Fecha de fin: ").strip()
             ventas_en_periodo(ventas, detalle_ventas, productos, fecha_inicio, fecha_fin)
         else:
-            print("\033[1;31mOpción no válida. Intente de nuevo.\033[0m")
+            print("Opción no válida. Intente de nuevo.")
