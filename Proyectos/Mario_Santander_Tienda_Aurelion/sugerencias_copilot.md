@@ -87,7 +87,7 @@ Mostrar ranking numérico y destacar los top 3 en todas las consultas.
 **✅ Aplicación:**
 
 * Se agregó ranking en **clientes, productos y medios de pago**.
-* Se añadió resaltado para el top 3 usando emojis en README (🥇 🥈 🥉) y colores ANSI en terminal.
+(En un momento implemente colores ANSI, pero el codigo no quedaba claro, asi que opte por eliminarlos y dejar el texto en blanco)
 
 **Ejemplo de salida en el README:**
 
@@ -95,30 +95,30 @@ Mostrar ranking numérico y destacar los top 3 en todas las consultas.
 
 | #   | Cliente          | Total Compras  |
 | --- | ---------------- | -------------  |
-| 🥇1 | Bruno Diaz       | 5             |
-| 🥈2 | Agustina Flores  | 4             |
-| 🥉3 | Olivia Gomez     | 4             |
-| 4   | Camila Rodriguez | 4              |
-| 5   | Santiago Diaz    | 4              |
+| 1 | Bruno Diaz       | 5             |
+| 2 | Agustina Flores  | 4             |
+| 3 | Olivia Gomez     | 4             |
+| 4 | Camila Rodriguez | 4              |
+| 5 | Santiago Diaz    | 4              |
 
 #### Productos más vendidos
 
 | #   | Producto                   | Cantidad |
 | --- | -------------------------- | -------- |
-| 🥇1 | Salsa de Tomate 500g       | 27       |
-| 🥈2 | Queso Rallado 150g         | 26       |
-| 🥉3 | Hamburguesas Congeladas x4 | 24       |
-| 4   | Aceitunas Verdes 200g      | 22       |
-| 5   | Vino Blanco 750ml          | 22       |
+| 1 | Salsa de Tomate 500g       | 27       |
+| 2 | Queso Rallado 150g         | 26       |
+| 3 | Hamburguesas Congeladas x4 | 24       |
+| 4 | Aceitunas Verdes 200g      | 22       |
+| 5 | Vino Blanco 750ml          | 22       |
 
 #### Ventas por medio de pago
 
 | #   | Medio de Pago | Total Ventas |
 | --- | ------------- | ------------ |
-| 🥇1 | efectivo      | 37           |
-| 🥈2 | qr            | 30           |
-| 🥉3 | transferencia | 27           |
-| 4   | tarjeta       | 26           |
+| 1 | efectivo      | 37           |
+| 2 | qr            | 30           |
+| 3 | transferencia | 27           |
+| 4 | tarjeta       | 26           |
 
 ---
 
@@ -132,8 +132,15 @@ Mostrar fechas en formato **DD-MM-YYYY** y validar que estén dentro del rango d
 * Periodo válido mostrado al usuario antes de ingresar fechas.
 * Validación de que las fechas ingresadas no excedan el rango disponible.
 
-### además del total y el top 3 de productos, también muestra un resumen de ventas por medio de pago dentro del periodo de tiempo seleccionado, todo esto con colores y formato limpio.
+### además del total y el top 3 de productos, también muestra un resumen de ventas por medio de pago dentro del periodo de tiempo seleccionado, todo esto con formato limpio
 
 ---
 
 Todas estas mejoras aplicadas optimizan la **estructura, claridad y calidad del código**, facilitan la lectura de resultados, aseguran consistencia de datos y mejoran la experiencia del usuario.
+
+---
+
+Autor
+
+**Mario Santander**
+Proyecto educativo desarrollado en Python y bases de datos.
