@@ -23,29 +23,34 @@ Mario_Santander_Tienda_Aurelion/
 
 ---
 
-## Clonar o descargar el repositorio
+Clonar o descargar el repositorio
 
 git clone / descargar zip
 
 https://github.com/MarioPhantom10/Curso_IBM_IA/tree/main/Proyectos/Mario_Santander_Tienda_Aurelion
 
-## Una vez descargado o clonado
+---
+Una vez descargado o clonado
 
 cd Mario_Santander_Tienda_Aurelion
 
-## Crear (opcional) un entorno virtual. Esto evita conflictos con otras instalaciones de Python
+---
+Crear (opcional) un entorno virtual. Esto evita conflictos con otras instalaciones de Python
 
 python -m venv venv
 
-## Activar el entorno virtual - En Windows
+---
+Activar el entorno virtual - En Windows
 
 venv\Scripts\activate
+---
 
-## Instalar dependencias necesarias - El programa usa pandas y openpyxl
+Instalar dependencias necesarias - El programa usa pandas y openpyxl
 
 pip install pandas openpyxl
+---
 
-## Ir a la carpeta del código y correr el archivo principal
+Ir a la carpeta del código y correr el archivo principal
 
 cd src
 python Tienda_Aurelion.py
