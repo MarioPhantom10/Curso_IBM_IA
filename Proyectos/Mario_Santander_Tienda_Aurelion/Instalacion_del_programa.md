@@ -1,10 +1,13 @@
-# Autor: Mario Santander
+# 🏪 Tienda Aurelion  
+
+### Autor: **Mario Santander**
 
 ---
-Estructura del Proyecto
 
+## 📂 Estructura del Proyecto
 
 ```
+
 Mario_Santander_Tienda_Aurelion/
 │
 ├── 📁 assets/
@@ -17,72 +20,120 @@ Mario_Santander_Tienda_Aurelion/
 │   └── detalle_ventas.xlsx                # Detalle de productos vendidos
 │
 ├── 📁 src/
-│   └── Tienda_Aurelion.py                 # Código principal del programa 
+│   └── Tienda_Aurelion.py                 # Código principal del programa
 │
 ├── 📄 README_Aurelion.md                  # Descripción general del proyecto
-├── 📄 sugerencias_copilot.md              # Archivo con mejoras, sugerencias
-│
-└── 📄 Instalacion_del_programa.md        # Instrucciones para instalar el programa
+├── 📄 sugerencias_copilot.md              # Archivo con mejoras y sugerencias
+└── 📄 Instalacion_del_programa.md          # Instrucciones de instalación
 
+````
+
+---
+
+## Descargar el repositorio
+
+```
+Entrá a:
+👉 https://github.com/MarioPhantom10/Curso_IBM_IA/tree/main/Proyectos/Mario_Santander_Tienda_Aurelion
+
+Hacés clic en "Code" → "Download ZIP"
+
+Extraés el ZIP en tu equipo.
 ```
 
 ---
 
-Clonar o descargar el repositorio
+## 📁 Ingresar al directorio del proyecto
 
-```git clone
-
-https://github.com/MarioPhantom10/Curso_IBM_IA/tree/main/Proyectos/Mario_Santander_Tienda_Aurelion
-```
-
----
-Una vez descargado o clonado
-```
+```bash
 cd Mario_Santander_Tienda_Aurelion
 ```
+
 ---
-Crear (opcional) un entorno virtual. Esto evita conflictos con otras instalaciones de Python
-```
+
+## 🧪 Crear (opcional) un entorno virtual
+
+Esto evita conflictos con otras instalaciones de Python:
+
+```bash
 python -m venv venv
 ```
+
 ---
-Activar el entorno virtual - En Windows
-```
+
+## ⚙️ Activar el entorno virtual
+
+**En Windows:**
+
+```bash
 venv\Scripts\activate
 ```
+
+**En macOS / Linux:**
+
+```bash
+source venv/bin/activate
+```
+
 ---
 
-Instalar dependencias necesarias - El programa usa pandas y openpyxl
-```
+## 📦 Instalar dependencias necesarias
+
+El programa utiliza las librerías `pandas` y `openpyxl`:
+
+```bash
 pip install pandas openpyxl
 ```
+
 ---
 
-Ir a la carpeta del código y correr el archivo principal
-```
+## ▶️ Ejecutar el programa
+
+Ir a la carpeta del código fuente y correr el archivo principal:
+
+```bash
 cd src
 python Tienda_Aurelion.py
 ```
+
 ---
 
-Si todo está bien, debería verse algo así
+## 💻 Ejemplo de salida esperada
 
- Bienvenido al programa de gestión de datos
+```
+Bienvenido al programa de gestión de datos
            Tienda Aurelion
 
 Este programa le permitirá consultar y analizar
 los datos de clientes, productos y ventas de la tienda.
+```
 
 ---
 
-## Interactuar con el menú
+## 🧩 Interactuar con el menú
 
-El usuario simplemente elige opciones
+El usuario puede seleccionar una de las siguientes opciones:
 
+```
 Seleccione una opción:
-
 1. Consultar clientes con más compras
 2. Consultar productos más vendidos
 3. Consultar ventas por medio de pago
 4. Consultar ventas en un periodo
 5. Salir
+```
+
+---
+
+## 💡 Recomendaciones
+
+* Asegurate de tener **Python 3.8 o superior** instalado.
+* Si el programa no encuentra los archivos `.xlsx`, revisá que estén dentro de la carpeta `database/`.
+* Podés personalizar los colores o textos del menú modificando el archivo `Tienda_Aurelion.py` dentro de `src/` Utilizando colores ANSI.
+
+---
+
+## Autor
+
+**Mario Santander**
+✨ *Gracias por utilizar **Tienda Aurelion**. Desarrollado como parte del curso **IBM de Inteligencia Artificial**.*
