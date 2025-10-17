@@ -84,7 +84,7 @@ La normalización:
 * Evita **inconsistencias** al actualizar registros.
 * Facilita **escalabilidad y mantenimiento**.
 
-Solo se almacenan los **identificadores (IDs)** y las relaciones se obtienen mediante consultas (`JOINs`).
+Solo se almacenan los **identificadores (IDs)** y las relaciones se obtienen mediante consultas (`JOINs`). Al momento de ver las tablas entregadas en clases, ya identifique que se podian limpiar algunos datos que se repetian, por lo tanto opte por eliminarlos directactamente.
 
 ---
 
@@ -97,7 +97,7 @@ El programa permite:
 * 📋 Listar clientes y sus compras.
 * 🏆 Identificar productos más vendidos.
 * 💳 Analizar ventas por medio de pago.
-* 📅 Calcular ventas totales por periodo.
+* 📅 Calcular ventas totales en un periodo de tiempo.
 
 ### ⚙️ 3.2 Pasos del Programa
 
@@ -132,11 +132,11 @@ Mientras el usuario no elija "Salir":
     Mostrar menú de opciones
     Leer opción
 
-    Si opción == 1: 🧾 clientes con más compras
-    Si opción == 2: 📦 productos más vendidos
-    Si opción == 3: 💳 ventas por medio de pago
-    Si opción == 4: 📅 ventas por periodo (con fechas)
-    Si opción == 5: ✅ salir
+    Si opción == 1: clientes con más compras
+    Si opción == 2: productos más vendidos
+    Si opción == 3: ventas por medio de pago
+    Si opción == 4: ventas por periodo (con fechas)
+    Si opción == 5: salir
 
 FIN
 ```
@@ -144,6 +144,8 @@ FIN
 ---
 
 ## 🔁 5. Diagrama de Flujo
+
+(El diagra se entrega en formato mermaid y tambien en un archivo png para mejor visualizacion)
 
 ```mermaid
 flowchart TD
