@@ -99,7 +99,7 @@ El programa permite:
 * 💳 Analizar ventas por medio de pago.
 * 📅 Calcular ventas totales en un periodo de tiempo.
 
-### ⚙️ 3.2 Pasos del Programa
+### ⚙️ 3.2 Pasos que realiza el Programa
 
 1. 📂 Cargar los archivos Excel en **DataFrames** (pandas).
 2. 🔗 Relacionar tablas mediante `id_cliente`, `id_producto`, `id_venta`.
