@@ -7,58 +7,63 @@ Estructura del Proyecto
 ```
 Mario_Santander_Tienda_Aurelion/
 │
-├── assets/
-│ └── diagrama_flujo_programa.png # Diagrama visual del flujo del programa
+├── 📁 assets/
+│   └── diagrama_flujo_programa.png        # Diagrama visual del flujo del programa
 │
-├── database/
-│ ├── clientes.xlsx # Datos de clientes
-│ ├── productos.xlsx # Datos de productos
-│ ├── ventas.xlsx # Datos de ventas
-│ └── detalle_ventas.xlsx # Detalle de productos vendidos
+├── 📁 database/
+│   ├── clientes.xlsx                      # Datos de clientes
+│   ├── productos.xlsx                     # Datos de productos
+│   ├── ventas.xlsx                        # Datos de ventas
+│   └── detalle_ventas.xlsx                # Detalle de productos vendidos
 │
-├── src/
-│ └── Tienda_Aurelion.py # Código principal del programa (archivo que ejecutás)
+├── 📁 src/
+│   └── Tienda_Aurelion.py                 # Código principal del programa 
 │
-├── README_Aurelion.md # Descripción general del proyecto
-├── sugerencias_copilot.md # Archivo con mejoras, sugerencias
-└── Instalacion_del_programa.md # Instrucciones para instalar el programa
+├── 📄 README_Aurelion.md                  # Descripción general del proyecto
+├── 📄 sugerencias_copilot.md              # Archivo con mejoras, sugerencias
+│
+└── 📄 Instalacion_del_programa.md        # Instrucciones para instalar el programa
+
 ```
 
 ---
 
 Clonar o descargar el repositorio
 
-git clone / descargar zip
+```git clone
 
 https://github.com/MarioPhantom10/Curso_IBM_IA/tree/main/Proyectos/Mario_Santander_Tienda_Aurelion
+```
 
 ---
 Una vez descargado o clonado
-
+```
 cd Mario_Santander_Tienda_Aurelion
-
+```
 ---
 Crear (opcional) un entorno virtual. Esto evita conflictos con otras instalaciones de Python
-
+```
 python -m venv venv
-
+```
 ---
 Activar el entorno virtual - En Windows
-
+```
 venv\Scripts\activate
-
+```
 ---
 
 Instalar dependencias necesarias - El programa usa pandas y openpyxl
-
+```
 pip install pandas openpyxl
-
+```
 ---
 
 Ir a la carpeta del código y correr el archivo principal
-
+```
 cd src
 python Tienda_Aurelion.py
+```
+---
 
 Si todo está bien, debería verse algo así
 
