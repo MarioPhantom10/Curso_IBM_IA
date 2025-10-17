@@ -138,6 +138,8 @@ Mostrar fechas en formato **DD-MM-YYYY** y validar que estén dentro del rango d
 
 Todas estas mejoras aplicadas optimizan la **estructura, claridad y calidad del código**, facilitan la lectura de resultados, aseguran consistencia de datos y mejoran la experiencia del usuario.
 
+En un primer momento, luego de tener funcional al programa, aplique con la ayuda de copilot color ANSI, al menu y opciones. la verdad que visualmente quedaba mucho mejor, pero el codigo no era muy legible, asi que opte por modificarlo y dejarlo solamente con el texto basico en blanco.
+
 ---
 
 Autor
