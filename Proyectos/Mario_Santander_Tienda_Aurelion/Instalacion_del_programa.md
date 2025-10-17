@@ -3,6 +3,8 @@
 ---
 Estructura del Proyecto
 
+
+```
 Mario_Santander_Tienda_Aurelion/
 │
 ├── assets/
@@ -18,9 +20,10 @@ Mario_Santander_Tienda_Aurelion/
 │ └── Tienda_Aurelion.py # Código principal del programa (archivo que ejecutás)
 │
 ├── README_Aurelion.md # Descripción general del proyecto
-├── sugerencias_copilot.md # Archivo con mejoras, sugerencias y feedback del desarrollo
-│
-└── .gitignore # (opcional, para excluir archivos al subir a GitHub)
+├── sugerencias_copilot.md # Archivo con mejoras, sugerencias
+└── Instalacion_del_programa.md # Instrucciones para instalar el programa
+```
+
 ---
 
 Clonar o descargar el repositorio
