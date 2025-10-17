@@ -176,4 +176,4 @@ flowchart TD
 ## ✍️ 6. Autor
 
 **Mario Santander**
-Proyecto educativo desarrollado en Python y bases de datos.
+✨ *Gracias por utilizar **Tienda Aurelion**. Desarrollado como parte del curso **IBM de Inteligencia Artificial**.*
