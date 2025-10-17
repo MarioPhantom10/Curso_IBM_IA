@@ -5,22 +5,22 @@ Estructura del Proyecto
 
 Mario_Santander_Tienda_Aurelion/
 │
-├── 📁 assets/
+├── assets/
 │ └── diagrama_flujo_programa.png # Diagrama visual del flujo del programa
 │
-├── 📁 database/
+├── database/
 │ ├── clientes.xlsx # Datos de clientes
 │ ├── productos.xlsx # Datos de productos
 │ ├── ventas.xlsx # Datos de ventas
 │ └── detalle_ventas.xlsx # Detalle de productos vendidos
 │
-├── 📁 src/
+├── src/
 │ └── Tienda_Aurelion.py # Código principal del programa (archivo que ejecutás)
 │
-├── 📄 README_Aurelion.md # Descripción general del proyecto
-├── 📄 sugerencias_copilot.md # Archivo con mejoras, sugerencias
-└── 📄 instalacion_del_programa.md # Instrucciones de instalación
-
+├── README_Aurelion.md # Descripción general del proyecto
+├── sugerencias_copilot.md # Archivo con mejoras, sugerencias y feedback del desarrollo
+│
+└── .gitignore # (opcional, para excluir archivos al subir a GitHub)
 ---
 
 Clonar o descargar el repositorio
@@ -43,11 +43,13 @@ python -m venv venv
 Activar el entorno virtual - En Windows
 
 venv\Scripts\activate
+
 ---
 
 Instalar dependencias necesarias - El programa usa pandas y openpyxl
 
 pip install pandas openpyxl
+
 ---
 
 Ir a la carpeta del código y correr el archivo principal
@@ -55,13 +57,15 @@ Ir a la carpeta del código y correr el archivo principal
 cd src
 python Tienda_Aurelion.py
 
-## Si todo está bien, debería verse algo así
+Si todo está bien, debería verse algo así
 
  Bienvenido al programa de gestión de datos
            Tienda Aurelion
 
 Este programa le permitirá consultar y analizar
 los datos de clientes, productos y ventas de la tienda.
+
+---
 
 ## Interactuar con el menú
 
